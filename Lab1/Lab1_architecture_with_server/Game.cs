@@ -8,8 +8,8 @@ public class Game
     private readonly GameAccount _splayer;
     private int _winnerRating;
     private int _loserRating;
-    private GameAccount Winner { get; set; }
-    private GameAccount Loser { get; set; }
+    private GameAccount Winner { get; set; } = null!;
+    private GameAccount Loser { get; set; } = null!;
 
 
     public Game(GameAccount fplayer, GameAccount splayer, long index)
@@ -55,7 +55,7 @@ public class Game
         report.Append(' ');
         report.Append(Loser.UserName);
         report.Append(" - loser");
-        report.Append("gameId: " + _index);
+        report.Append(" gameId: " + _index);
         return report.ToString();
     }
 

@@ -6,12 +6,28 @@ namespace Lab1
     {
         private static void Main(string[] args)
         {
+            
+            // Server architecture
+            
             // var server = new Server();
             // var fAccount = server.CreateAccount("Roman");
-            // var sAccount = server.CreateAccount("evilive");
+            // var sAccount = server.CreateAccount("Vitaliy");
+            //
+            // fAccount.FindGame();
+            // sAccount.FindGame();
+            //
+            // sAccount.FindGame();
+            // fAccount.FindGame();
+            //
+            // fAccount.GetStats();
+            //
+            // sAccount.FindGame();
+            // fAccount.FindGame();
             //
             // sAccount.GetStats();
-
+            
+            // Decentralized architecture
+            
             var me = new Lab1_decentralized_architecture.GameAccount("Roman");
             var enemy = new Lab1_decentralized_architecture.GameAccount("Vitaliy");
             
