@@ -7,6 +7,7 @@ public class GameAccount
     private int _gamesCount;
     private readonly Server _server;
     public readonly long Index;
+    private readonly List<AccountGame> _myGames = new();
 
     public GameAccount(string userName, Server server, long index)
     {
@@ -17,21 +18,23 @@ public class GameAccount
         Index = index;
     }
 
-    public void LoseGame()
+    public void LoseGame(int rating, string opponentName)
     {
         _gamesCount++;
         if (CurrentRating <= 10) return;
-        CurrentRating -= 30;
+        CurrentRating -= rating;
         if (CurrentRating < 10)
         {
             CurrentRating = 10;
         }
+        _myGames.Add(new AccountGame(opponentName, rating, "lose"));
     }
     
-    public void WinGame()
+    public void WinGame(int rating, string opponentName)
     {
         _gamesCount++;
-        CurrentRating += 30;
+        CurrentRating += rating;
+        _myGames.Add(new AccountGame(opponentName, rating, "win"));
     }
 
     public void FindGame()
@@ -46,7 +49,7 @@ public class GameAccount
         }
     }
 
-    public void GetStats()
+    public void GetStatsFromServer()
     {
         var report = new System.Text.StringBuilder();
         report.AppendLine("Name: " + UserName);
@@ -57,6 +60,20 @@ public class GameAccount
         foreach (var game in games)
         {
             report.AppendLine(game.AsString());
+        }
+        Console.WriteLine(report.ToString());
+    }
+    
+    public void GetStatsFromAccount()
+    {
+        var report = new System.Text.StringBuilder();
+        report.AppendLine("Name: " + UserName);
+        report.AppendLine("Total games played: " + _gamesCount);
+        report.AppendLine("Rating: " + CurrentRating);
+        report.AppendLine("Games:");
+        foreach (var game in _myGames)
+        {
+            report.AppendLine(game.ToString());
         }
         Console.WriteLine(report.ToString());
     }

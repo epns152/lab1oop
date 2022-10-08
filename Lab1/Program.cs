@@ -9,34 +9,23 @@ namespace Lab1
             
             // Server architecture
             
-            // var server = new Server();
-            // var fAccount = server.CreateAccount("Roman");
-            // var sAccount = server.CreateAccount("Vitaliy");
-            //
-            // fAccount.FindGame();
-            // sAccount.FindGame();
-            //
-            // sAccount.FindGame();
-            // fAccount.FindGame();
-            //
-            // fAccount.GetStats();
-            //
-            // sAccount.FindGame();
-            // fAccount.FindGame();
-            //
-            // sAccount.GetStats();
+            var server = new Server();
+            var fAccount = server.CreateAccount("Roman");
+            var sAccount = server.CreateAccount("Vitaliy");
             
-            // Decentralized architecture
+            fAccount.FindGame();
+            sAccount.FindGame();
             
-            var me = new Lab1_decentralized_architecture.GameAccount("Roman");
-            var enemy = new Lab1_decentralized_architecture.GameAccount("Vitaliy");
+            sAccount.FindGame();
+            fAccount.FindGame();
             
-            me.WinGame(enemy, 100);
-            me.WinGame(enemy, 100);
-            me.LoseGame(enemy, 111);
+            // fAccount.GetStatsFromServer();
             
-            me.GetStats();
-            enemy.GetStats();
+            sAccount.FindGame();
+            fAccount.FindGame();
+            
+            sAccount.GetStatsFromServer();
+            fAccount.GetStatsFromAccount();
         }
     }
 }

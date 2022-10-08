@@ -6,6 +6,7 @@ public class Game
     private readonly long _index;
     private readonly GameAccount _fplayer;
     private readonly GameAccount _splayer;
+    private int rating;
     private int _winnerRating;
     private int _loserRating;
     private GameAccount Winner { get; set; } = null!;
@@ -17,6 +18,7 @@ public class Game
         _fplayer = fplayer;
         _splayer = splayer;
         _index = index;
+        rating = 30 + Math.Abs(fplayer.CurrentRating - splayer.CurrentRating) / 20;
     }
 
     public void Play()
@@ -28,18 +30,18 @@ public class Game
             _winnerRating = _fplayer.CurrentRating;
             _loserRating = _splayer.CurrentRating;
             Winner = _fplayer;
-            _fplayer.WinGame();
+            _fplayer.WinGame(rating, _splayer.UserName);
             Loser = _splayer;
-            _splayer.LoseGame();
+            _splayer.LoseGame(rating, _fplayer.UserName);
         }
         else
         {
             _winnerRating = _splayer.CurrentRating;
             _loserRating = _fplayer.CurrentRating;
             Winner = _splayer;
-            _splayer.WinGame();
+            _splayer.WinGame(rating, _fplayer.UserName);
             Loser = _fplayer;
-            _fplayer.LoseGame();
+            _fplayer.LoseGame(rating, _splayer.UserName);
         }
     }
 
