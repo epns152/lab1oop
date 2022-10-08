@@ -7,7 +7,7 @@ public class GameAccount
     private int _gamesCount;
     private readonly Server _server;
     public readonly long Index;
-    private readonly List<AccountGame> _myGames = new();
+    private readonly List<GameForAccountStats> _myGames = new();
 
     public GameAccount(string userName, Server server, long index)
     {
@@ -27,14 +27,14 @@ public class GameAccount
         {
             CurrentRating = 10;
         }
-        _myGames.Add(new AccountGame(opponentName, rating, "lose"));
+        _myGames.Add(new GameForAccountStats(opponentName, rating, "lose"));
     }
     
     public void WinGame(int rating, string opponentName)
     {
         _gamesCount++;
         CurrentRating += rating;
-        _myGames.Add(new AccountGame(opponentName, rating, "win"));
+        _myGames.Add(new GameForAccountStats(opponentName, rating, "win"));
     }
 
     public void FindGame()
