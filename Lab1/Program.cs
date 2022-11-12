@@ -1,4 +1,7 @@
 ﻿using Lab1.Lab1_architecture_with_server;
+using Lab1.Lab1_decentralized_architecture;
+using Game = Lab1.Lab1_decentralized_architecture.Game;
+using GameAccount = Lab1.Lab1_decentralized_architecture.GameAccount;
 
 namespace Lab1
 {
@@ -10,22 +13,29 @@ namespace Lab1
             // Server architecture
             
             var server = new Server();
-            var fAccount = server.CreateAccount("Roman");
-            var sAccount = server.CreateAccount("Vitaliy");
+            var fAccount = server.CreateVipAccount("Roman");
+            var sAccount = server.CreatePremiumAccount("Vitaliy");
             
-            fAccount.FindGame();
-            sAccount.FindGame();
+            fAccount.FindStandardGame();
+            sAccount.FindStandardGame();
             
-            sAccount.FindGame();
-            fAccount.FindGame();
+            sAccount.FindStandardGame();
+            fAccount.FindStandardGame();
             
-            // fAccount.GetStatsFromServer();
+            sAccount.FindTrainGame();
+            fAccount.FindTrainGame();
             
-            sAccount.FindGame();
-            fAccount.FindGame();
-            
+            sAccount.FindStandardGame();
+            fAccount.FindStandardGame();
+
+            sAccount.FindStandardGame();
+            fAccount.FindStandardGame();
+
             sAccount.GetStatsFromServer();
-            fAccount.GetStatsFromAccount();
+            fAccount.GetStatsFromServer();
+            
+            // Console.WriteLine(server.AllAccounts());
+            
         }
     }
 }

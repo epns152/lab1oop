@@ -1,39 +1,75 @@
-﻿namespace Lab1.Lab1_architecture_with_server;
+﻿using Lab1.Lab1_architecture_with_server.Account;
+using Lab1.Lab1_architecture_with_server.Game;
+
+namespace Lab1.Lab1_architecture_with_server;
 
 public class Server
 {
     private long _gameId = 100000000;
     private long _accountId = 100000000;
-    private readonly List<Game> _games = new();
-    private readonly List<GameAccount> _gameAccounts = new();
-    private readonly Queue<GameAccount> _gameAccountsQueue = new();
+    private readonly List<AbstractGame> _games = new();
+    private readonly List<BaseAccount> _gameAccounts = new();
+    private readonly Queue<BaseAccount> _gameAccountsQueueForStandardGame = new();
+    private readonly Queue<BaseAccount> _gameAccountsQueueForTrainGame = new();
     
-    public GameAccount CreateAccount(string name)
+    public BaseAccount CreateBaseAccount(string name)
     {
-        var account = new GameAccount(name, this, _accountId++);
+        var account = new BaseAccount(name, this, _accountId++);
+        _gameAccounts.Add(account);
+        return account;
+    }
+    
+    public BaseAccount CreateVipAccount(string name)
+    {
+        var account = new VipAccount(name, this, _accountId++);
+        _gameAccounts.Add(account);
+        return account;
+    }
+    
+    public BaseAccount CreatePremiumAccount(string name)
+    {
+        var account = new PremiumAccount(name, this, _accountId++);
         _gameAccounts.Add(account);
         return account;
     }
 
-    public void FindGame(GameAccount account)
+    public void FindStandardGame(BaseAccount account)
     {
-        if (_gameAccountsQueue.Contains(account))
+        if (_gameAccountsQueueForStandardGame.Contains(account) || _gameAccountsQueueForTrainGame.Contains(account))
         {
-            throw new ArgumentException("You are already searching a game!!!");
+            throw new ArgumentException("You are already searching a game #findstgame!!!");
         }
-        _gameAccountsQueue.Enqueue(account);
-        CheckPlayersCount();
+        _gameAccountsQueueForStandardGame.Enqueue(account);
+        CheckPlayersCountForStandardGame();
+    }
+    
+    public void FindTrainGame(BaseAccount account)
+    {
+        if (_gameAccountsQueueForTrainGame.Contains(account) || _gameAccountsQueueForStandardGame.Contains(account))
+        {
+            throw new ArgumentException("You are already searching a game #findtraingame!!!");
+        }
+        _gameAccountsQueueForTrainGame.Enqueue(account);
+        CheckPlayersCountForTrainGame();
     }
 
-    private void CheckPlayersCount()
+    private void CheckPlayersCountForStandardGame()
     {
-        if (_gameAccountsQueue.Count != 2) return;
-        var game = new Game(_gameAccountsQueue.Dequeue(), _gameAccountsQueue.Dequeue(), _gameId++);
+        if (_gameAccountsQueueForStandardGame.Count != 2) return;
+        var game = GameFactory.GetStandardGame(_gameAccountsQueueForStandardGame.Dequeue(), _gameAccountsQueueForStandardGame.Dequeue(), _gameId++);
+        game.Play();
+        _games.Add(game);
+    }
+    
+    private void CheckPlayersCountForTrainGame()
+    {
+        if (_gameAccountsQueueForTrainGame.Count != 2) return;
+        var game = GameFactory.GetTrainGame(_gameAccountsQueueForTrainGame.Dequeue(), _gameAccountsQueueForTrainGame.Dequeue(), _gameId++);
         game.Play();
         _games.Add(game);
     }
 
-    public List<Game> GetAllGamesWithAccount(long index)
+    public List<AbstractGame> GetAllGamesWithAccount(long index)
     {
         return _games.Where(game => game.WasInGame(index)).ToList();
     }
@@ -43,6 +79,7 @@ public class Server
         var report = new System.Text.StringBuilder();
         foreach (var account in _gameAccounts)
         {
+            report.Append(account.GetType() + " ");
             report.Append("Name: ");
             report.Append(account.UserName);
             report.Append('\n');

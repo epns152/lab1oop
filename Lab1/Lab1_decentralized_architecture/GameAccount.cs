@@ -23,6 +23,10 @@ public class GameAccount
         {
             throw new ArgumentException("Rating cannot be less than 1");
         }
+        if (enemy == this)
+        {
+            throw new ArgumentException("You cannot play with yourself");
+        }
 
         _gamesCount++;
         enemy._gamesCount++;
@@ -44,6 +48,10 @@ public class GameAccount
         if (rating <= 0)
         {
             throw new ArgumentException("Rating cannot be less than 1");
+        }
+        if (enemy == this)
+        {
+            throw new ArgumentException("You cannot play with yourself");
         }
 
         _gamesCount++;
@@ -68,6 +76,7 @@ public class GameAccount
         report.AppendLine("Name: " + UserName);
         report.AppendLine("Total games played: " + _gamesCount);
         report.AppendLine("Rating: " + CurrentRating);
+        report.AppendLine("Id: " + _index);
         report.AppendLine("Games:");
         foreach (var game in _games)
         {
