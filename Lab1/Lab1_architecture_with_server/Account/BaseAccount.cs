@@ -1,4 +1,6 @@
-﻿namespace Lab1.Lab1_architecture_with_server.Account;
+﻿using Lab1.Lab1_architecture_with_server.Game;
+
+namespace Lab1.Lab1_architecture_with_server.Account;
 
 public class BaseAccount
 {

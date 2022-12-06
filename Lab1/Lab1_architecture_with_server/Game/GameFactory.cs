@@ -2,7 +2,7 @@
 
 namespace Lab1.Lab1_architecture_with_server.Game;
 
-public class GameFactory
+public static class GameFactory
 {
     public static AbstractGame GetStandardGame(BaseAccount fplayer, BaseAccount splayer, long index)
     {

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Roman\\Desktop\\OOP\\Lab1\\Lab1\\Lab1.csproj": {}
+    "C:\\Users\\Roman\\Desktop\\learning\\OOP\\Lab1\\Lab1\\Lab1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Roman\\Desktop\\OOP\\Lab1\\Lab1\\Lab1.csproj": {
+    "C:\\Users\\Roman\\Desktop\\learning\\OOP\\Lab1\\Lab1\\Lab1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Roman\\Desktop\\OOP\\Lab1\\Lab1\\Lab1.csproj",
+        "projectUniqueName": "C:\\Users\\Roman\\Desktop\\learning\\OOP\\Lab1\\Lab1\\Lab1.csproj",
         "projectName": "Lab1",
-        "projectPath": "C:\\Users\\Roman\\Desktop\\OOP\\Lab1\\Lab1\\Lab1.csproj",
+        "projectPath": "C:\\Users\\Roman\\Desktop\\learning\\OOP\\Lab1\\Lab1\\Lab1.csproj",
         "packagesPath": "C:\\Users\\Roman\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Roman\\Desktop\\OOP\\Lab1\\Lab1\\obj\\",
+        "outputPath": "C:\\Users\\Roman\\Desktop\\learning\\OOP\\Lab1\\Lab1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Roman\\AppData\\Roaming\\NuGet\\NuGet.Config"

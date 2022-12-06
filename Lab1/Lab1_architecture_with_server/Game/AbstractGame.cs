@@ -1,7 +1,5 @@
 ﻿
-using Lab1.Lab1_architecture_with_server.Account;
-
-namespace Lab1.Lab1_architecture_with_server;
+namespace Lab1.Lab1_architecture_with_server.Game;
 
 public abstract class AbstractGame
 {

@@ -1,4 +1,6 @@
-﻿namespace Lab1.Lab1_architecture_with_server.Account;
+﻿using Lab1.Lab1_architecture_with_server.Game;
+
+namespace Lab1.Lab1_architecture_with_server.Account;
 
 public class VipAccount : BaseAccount
 {
@@ -13,7 +15,7 @@ public class VipAccount : BaseAccount
     
     public override void LoseGame(AbstractGame game, string opponentName)
     {
-        int rating = game.GetRating();
+        var rating = game.GetRating();
         rating /= 2;
         if (rating < 0)
         {
